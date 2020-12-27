@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title %></title>
+</head>
+<body>
+    <h1><%= title %></h1>
+    <a href="/">一覧へ</a>
+    <form action="/confirm" method="POST">
+        <table>
+            <tr>
+                <td>
+                    <p>
+                        顧客名：
+                        <input type="text" name="clientName">
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>
+                        住所：
+                        <input type="text" name="address">
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <p>
+                        電話：
+                        <input type="text" name="tel">
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="確認"></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
