@@ -20,11 +20,10 @@
                 <td><%= manages[i].clientName %></td>
                 <td><%= manages[i].address %></td>
                 <td><%= manages[i].tel %></td>
+                <td><a href="/edit/<%= manages[i].id %>">編集</a></td>
+                <td><a href="/delete/<%= manages[i].id %>">削除</a></td>
             </tr>
             <% } %>
-            <tr>
-                <th><a href="/edit:id"></a></th>
-            </tr>
         </table>
 
         <script src="/javascripts/script.js"></script>
