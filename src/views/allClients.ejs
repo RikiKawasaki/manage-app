@@ -1,31 +1,42 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title><%= title %></title>
-        <link rel='stylesheet' href='/stylesheets/style.css' />
-    </head>
-    <body>
-        <h1><%= title %></h1>
-        <a href="/create">登録する</a>
-        <table>
-            <tr>
-                <td>ID</td>
-                <td>顧客名</td>
-                <td>住所</td>
-                <td>電話番号</td>
-            </tr>
-            <% for(let i = 0; i < manages.length; i++) { %>
-            <tr>
-                <td><%= manages[i].id %></td>
-                <td><%= manages[i].clientName %></td>
-                <td><%= manages[i].address %></td>
-                <td><%= manages[i].tel %></td>
-                <td><a href="/edit/<%= manages[i].id %>">編集</a></td>
-                <td><a href="/delete/<%= manages[i].id %>">削除</a></td>
-            </tr>
-            <% } %>
-        </table>
+<head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+</head>
+<body>
+    <h1><%= title %></h1>
+    <a href="/create">登録する</a>
+    <table>
+        <tr>
+            <td>ID</td>
+            <td>顧客名</td>
+            <td>住所</td>
+            <td>電話番号</td>
+        </tr>
+        <% for(let i = 0; i < manages.length; i++) { %>
+        <tr class="clientList">
+            <td id="<%= manages[i].id %>"><%= manages[i].id %></td>
+            <td><%= manages[i].clientName %></td>
+            <td><%= manages[i].address %></td>
+            <td><%= manages[i].tel %></td>
+            <td><a href="/edit/<%= manages[i].id %>">編集</a></td>
+            <td><a href="/delete/<%= manages[i].id %>">削除</a></td>
+        </tr>
+        <% } %>
+    </table>
+    <table>
+        <tr>
+            <th>ID:</th>
+            <td>
+                <select id="sort">
+                    <option value="smallestTo">昇順</option>
+                    <option value="largestTo">降順</option>
+                </select>
+            </td>
+        </tr>
+    </table>
 
-        <script src="/javascripts/script.js"></script>
-    </body>
+    <script src="/javascripts/script.js"></script>
+</body>
 </html>
