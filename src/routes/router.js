@@ -3,6 +3,7 @@ const router = express.Router();
 const manageControl = require("../controllers/manageController");
 
 router.get("/", manageControl.home);
+router.get("/research", manageControl.research);
 router.get("/showAllClient", manageControl.showAllClient);
 router.get("/create", manageControl.create);
 router.post("/confirm", manageControl.confirm);

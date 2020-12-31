@@ -6,7 +6,8 @@
 </head>
 <body>
     <h1><%= title %></h1>
-    <a href="/create">登録する</a>
+    <a href="/">HOME</a>
+    <a href="/create">登録</a>
     <table>
         <tr>
             <td>ID</td>
@@ -16,7 +17,7 @@
         </tr>
         <% for(let i = 0; i < manages.length; i++) { %>
         <tr class="clientList">
-            <td id="<%= manages[i].id %>"><%= manages[i].id %></td>
+            <td class="clientId"><%= manages[i].id %></td>
             <td><%= manages[i].clientName %></td>
             <td><%= manages[i].address %></td>
             <td><%= manages[i].tel %></td>
@@ -29,7 +30,7 @@
         <tr>
             <th>ID:</th>
             <td>
-                <select id="sort">
+                <select class="sort">
                     <option value="smallestTo">昇順</option>
                     <option value="largestTo">降順</option>
                 </select>

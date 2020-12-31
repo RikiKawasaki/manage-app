@@ -5,6 +5,13 @@ const manageControl = {
         res.render("home", { title: "顧客管理ツール" });
     },
 
+    // research: (req, res, next) => {
+    //     db.Manage.findAll({
+
+    //     })
+    //     res.render("")
+    // },
+
     showAllClient: async (req, res, next) => {
         const manages = await db.Manage.findAll();
         res.render('allClients', { title: '顧客一覧', manages });
