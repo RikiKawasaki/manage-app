@@ -1,4 +1,6 @@
 const db = require("../models");
+const { validationResult } = require("express-validator");
+const { values } = require("../public/javascripts/validators/manageValidator");
 
 const manageControl = {
     home: (req, res, next) => {
@@ -22,13 +24,28 @@ const manageControl = {
     },
 
     confirm: (req, res, next) => {
+        const errors = validationResult(req);
         const obj = req.body;
-        res.render("confirm", {
-            title: "確認",
-            clientName: obj.clientName,
-            address: obj.address,
-            tel: obj.tel
-        });
+        if (!errors.isEmpty()) {
+            // return res.status(400).json({ errors: errors.array() });
+            const errors_array = errors.array();
+            res.render("confirm", {
+                title: "確認",
+                errorMessage: errors_array,
+                // clientName: obj.clientName,
+                // address: obj.address,
+                // tel: obj.tel
+            });
+        } else {
+            // const obj = req.body;
+            res.render("confirm", {
+                title: "確認",
+                errorMessage: "",
+                clientName: obj.clientName,
+                address: obj.address,
+                tel: obj.tel
+            });
+        }
     },
 
     setClient: (req, res, next) => {
