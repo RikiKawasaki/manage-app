@@ -9,35 +9,19 @@
     <h1><%= title %></h1>
     <a href="/showAllClient">一覧</a>
     <form action="/update/<%= manages.id %>" method="post">
-        <table>
-            <tr>
-                <td>
-                    <p>
-                        顧客名：
-                        <input type="text" name="clientName" value="<%= manages.clientName %>">
-                    </p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p>
-                        住所：
-                        <input type="text" name="address" value="<%= manages.address %>">
-                    </p>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <p>
-                        電話：
-                        <input type="text" name="tel" value="<%= manages.tel %>">
-                    </p>
-                </td>
-            </tr>
-            <tr>
-                <td><input type="submit" value="登録"></td>
-            </tr>
-        </table>
+        <div>
+            <label for="clientName">顧客名</label>
+            <input type="text" name="clientName" id="clientName" value="<%= manages.clientName %>">
+        </div>
+        <div>
+            <label for="address">住所</label>
+            <input type="text" name="address" id="address" value="<%= manages.address %>">
+        </div>
+        <div>
+            <label for="tel">電話</label>
+            <input type="text" name="tel" id="tel" value="<%= manages.tel %>">
+        </div>
+        <p><input type="submit" value="登録"></p>
     </form>
 </body>
 </html>

@@ -15,42 +15,29 @@
             </li>
             <% } %>
         </ul>
+        <a href="/create">戻る</a>
     <% } %>
     <% if (!errorMessage) { %>
         <form action="/setClient" method="POST">
-            <table>
-                <tr>
-                    <td>
-                        <p>
-                            顧客名：
-                            <input type="hidden" name="clientName" value="<%= clientName %>">
-                            <%= clientName %>
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>
-                            住所：
-                            <input type="hidden" name="address" value="<%= address %>">
-                            <%= address %>
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <p>
-                            電話：
-                            <input type="hidden" name="tel" value="<%= tel %>">
-                            <%= tel %>
-                        </p>
-                    </td>
-                </tr>
-                <tr>
-                    <th><input type="submit" value="戻る"></th>
-                    <th><input type="submit" value="登録"></th>
-                </tr>
-            </table>
+            <div>
+                <label for="clientName">顧客名</label>
+                <input type="hidden" name="clientName" id="clientName" value="<%= clientName %>">
+                <%= clientName %>
+            </div>
+            <div>
+                <label for="address">住所</label>
+                <input type="hidden" name="address" id="address" value="<%= address %>">
+                <%= address %>
+            </div>
+            <div>
+                <label for="tel">電話</label>
+                <input type="hidden" name="tel" id="tel" value="<%= tel %>">
+                <%= tel %>
+            </div>
+            <div>
+                <input type="submit" value="戻る">
+                <input type="submit" value="登録">
+            </div>
         </form>
     <% } %>
 </body>

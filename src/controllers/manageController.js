@@ -1,18 +1,18 @@
-const db = require("../models");
 const { validationResult } = require("express-validator");
-const { values } = require("../public/javascripts/validators/manageValidator");
+const db = require("../models");
 
 const manageControl = {
-    home: (req, res, next) => {
-        res.render("home", { title: "顧客管理ツール" });
+    loginGet: (req, res, next) => {
+        res.render("login", { title: "ログイン" });
     },
 
-    // research: (req, res, next) => {
-    //     db.Manage.findAll({
-
-    //     })
-    //     res.render("")
+    // loginPost: (req, res, next) => {
+    //     res.send("ok");
     // },
+
+    home: (req, res, next) => {
+        res.send("OK");
+    },
 
     showAllClient: async (req, res, next) => {
         const manages = await db.Manage.findAll();
@@ -20,24 +20,21 @@ const manageControl = {
     },
 
     create: (req, res, next) => {
-        res.render("create", { title: "新規登録" });
+        res.render("create", {
+            title: "新規登録",
+        });
     },
 
     confirm: (req, res, next) => {
         const errors = validationResult(req);
         const obj = req.body;
         if (!errors.isEmpty()) {
-            // return res.status(400).json({ errors: errors.array() });
             const errors_array = errors.array();
             res.render("confirm", {
                 title: "確認",
                 errorMessage: errors_array,
-                // clientName: obj.clientName,
-                // address: obj.address,
-                // tel: obj.tel
             });
         } else {
-            // const obj = req.body;
             res.render("confirm", {
                 title: "確認",
                 errorMessage: "",
