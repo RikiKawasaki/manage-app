@@ -1,34 +1,12 @@
 const express = require('express');
-const router = express.Router();
 const manageControl = require("../controllers/manageController");
 const manageValidation = require("../public/javascripts/validators/manageValidator");
-const passport = require("../public/javascripts/passport/passport");
-const session = require("express-session");
 
-const app = express();
+const router = express.Router();
 
-const authMiddleware = (req, res, next) => {
-    if (req.isAuthenticated()) {
-        next();
-    } else {
-        res.redirect("/login");
-    }
-};
-
-app.use(session({
-    secret: "secret",
-    resave: false,
-    saveUninitialized: false
-}));
-app.use(passport.initialize());
-app.use(passport.session());
-
-
+router.get("/", manageControl.default);
 router.get("/login", manageControl.loginGet);
-router.post("/login", passport.authenticate("local", {
-    successRedirect: "/home",
-    failureRedirect: "/login",
-}));
+router.post("/login", manageControl.loginPost);
 router.get("/home", manageControl.home);
 router.get("/showAllClient", manageControl.showAllClient);
 router.get("/create", manageControl.create);

@@ -8,7 +8,7 @@ module.exports = {
         {
         name: "Test",
         email: "test@example.com",
-        password: bcrypt.hashSync("secret", bcrypt.genSaltSync(10)),
+        password: bcrypt.hashSync("secret", bcrypt.genSaltSync(8)),
         createdAt: now,
         updatedAt: now
         }
