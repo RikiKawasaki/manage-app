@@ -1,17 +1,5 @@
-const express = require("express");
 const { validationResult } = require("express-validator");
-const session = require("express-session");
-const bcrypt = require("bcrypt");
 const db = require("../models");
-const User = require("../models").User;
-
-const app = express();
-
-app.use(session({
-    secret: "secretID",
-    resave: false,
-    saveUninitialized: false
-}));
 
 const manageControl = {
     default: (req, res, next) => {
@@ -22,24 +10,28 @@ const manageControl = {
         res.render("login", { title: "ログイン" });
     },
 
-    loginPost: async (req, res, next) => {
-        const email = await req.body.email;
-        const password = await req.body.password;
-        User.findOne({
-            where: {
-                email: email
-            }
-        })
-        .then((user) => {
-            if (user && bcrypt.compareSync(password, user.password)) {
-                res.redirect("/home");
-            }
-            throw new Error();
-        })
-        .catch(() => {
-            res.redirect("/login");
-        });
+    loginPost: (req, res, next) => {
+        res.send("ok");
     },
+
+    // loginPost: async (req, res, next) => {
+    //     const email = await req.body.email;
+    //     const password = await req.body.password;
+    //     User.findOne({
+    //         where: {
+    //             email: email
+    //         }
+    //     })
+    //     .then((user) => {
+    //         if (user && bcrypt.compareSync(password, user.password)) {
+    //             res.redirect("/home");
+    //         }
+    //         throw new Error();
+    //     })
+    //     .catch(() => {
+    //         res.redirect("/login");
+    //     });
+    // },
 
     home: (req, res, next) => {
         res.render("home", { title: "HOME" });
