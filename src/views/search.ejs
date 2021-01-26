@@ -6,10 +6,12 @@
     <title><%= title %></title>
   </head>
   <body>
-    <h1><%= title %></h1>
+    <label for="search"><%= title %></label>
     <form action="/searchresult" method="POST">
-      <input type="text" name="name" />
+      <input type="text" name="search" id="search" required />
       <input type="submit" value="<%= title %>" />
     </form>
+    <p><a href="/allClients">一覧</a></p>
+    <p><a href="/create">登録</a></p>
   </body>
 </html>

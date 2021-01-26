@@ -1,28 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= title %></title>
-</head>
-<body>
+  </head>
+  <body>
     <h1><%= title %></h1>
     <form action="/confirm" method="POST">
-        <div>
-            <label for="clientName">顧客名</label>
-            <input type="text" name="clientName" id="clientName" required>
-        </div>
-        <div>
-            <label for="address">住所</label>
-            <input type="text" name="address" id="address" required>
-        </div>
-        <div>
-            <label for="tel">電話</label>
-            <input type="text" name="tel" id="tel" required>
-        </div>
-        <div>
-            <input type="submit" value="確認">
-        </div>
+      <div>
+        <label for="clientName">顧客名</label>
+        <input type="text" name="clientName" id="clientName" required />
+      </div>
+      <div>
+        <label for="address">住所</label>
+        <input type="text" name="address" id="address" required />
+      </div>
+      <div>
+        <label for="tel">電話</label>
+        <input type="text" name="tel" id="tel" required />
+      </div>
+      <div>
+        <input type="submit" value="確認" />
+      </div>
     </form>
-</body>
+  </body>
 </html>

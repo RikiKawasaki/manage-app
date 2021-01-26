@@ -1,6 +1,7 @@
 const { validationResult } = require("express-validator");
-const db = require("../models");
 const Sequelize = require("sequelize");
+const db = require("../models");
+
 const Op = Sequelize.Op;
 
 const manageControl = {
@@ -40,21 +41,33 @@ const manageControl = {
   },
 
   searchResult: (req, res, next) => {
-    // res.render("searchResult", { title: "検索結果" });
-    const name = req.body.name;
+    const search = req.body.search;
     db.Manage.findAll({
       where: {
-        clientName: {
-          [Op.like]: `%${name}%`,
-        },
+        [Op.or]: [
+          {
+            clientName: {
+              [Op.like]: `%${search}%`,
+            },
+          },
+          {
+            address: {
+              [Op.like]: `%${search}%`,
+            },
+          },
+          {
+            tel: {
+              [Op.like]: `%${search}%`,
+            },
+          },
+        ],
       },
     })
       .then((users) => {
-        res.send("good");
-        throw new Error();
+        res.render("searchResult", { title: "検索結果", users });
       })
       .catch(() => {
-        res.send("bad");
+        res.send("Not Found");
       });
   },
 

@@ -7,5 +7,22 @@
   </head>
   <body>
     <h1><%= title %></h1>
+    <table>
+      <tr>
+        <td>ID</td>
+        <td>顧客名</td>
+      </tr>
+      <% for(let i = 0; i < users.length; i++) { %>
+      <tr class="clientList">
+        <td class="clientId"><%= users[i].id %></td>
+        <td><%= users[i].clientName %></td>
+        <td><a href="/edit/<%= users[i].id %>">編集</a></td>
+        <td><a href="/delete/<%= users[i].id %>">削除</a></td>
+      </tr>
+      <% } %>
+    </table>
+    <p><a href="/allClients">一覧</a></p>
+    <p><a href="/create">登録</a></p>
+    <p><a href="/search">検索</a></p>
   </body>
 </html>

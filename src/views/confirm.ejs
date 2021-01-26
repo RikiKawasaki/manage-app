@@ -1,44 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><%= title %></title>
-</head>
-<body>
+  </head>
+  <body>
     <h1><%= title %></h1>
     <% if (errorMessage) { %>
-        <ul>
-            <% for (let i in errorMessage) { %>
-            <li>
-                <%= errorMessage[i].msg %>
-            </li>
-            <% } %>
-        </ul>
-        <a href="/create">戻る</a>
+    <ul>
+      <% for (let i in errorMessage) { %>
+      <li><%= errorMessage[i].msg %></li>
+      <% } %>
+    </ul>
+    <a href="/create">戻る</a>
+    <% } %> <% if (!errorMessage) { %>
+    <form action="/setClient" method="POST">
+      <div>
+        <label for="clientName">顧客名</label>
+        <input
+          type="hidden"
+          name="clientName"
+          id="clientName"
+          value="<%= clientName %>"
+        />
+        <%= clientName %>
+      </div>
+      <div>
+        <label for="address">住所</label>
+        <input
+          type="hidden"
+          name="address"
+          id="address"
+          value="<%= address %>"
+        />
+        <%= address %>
+      </div>
+      <div>
+        <label for="tel">電話</label>
+        <input type="hidden" name="tel" id="tel" value="<%= tel %>" />
+        <%= tel %>
+      </div>
+      <div>
+        <input type="submit" value="戻る" />
+        <input type="submit" value="登録" />
+      </div>
+    </form>
     <% } %>
-    <% if (!errorMessage) { %>
-        <form action="/setClient" method="POST">
-            <div>
-                <label for="clientName">顧客名</label>
-                <input type="hidden" name="clientName" id="clientName" value="<%= clientName %>">
-                <%= clientName %>
-            </div>
-            <div>
-                <label for="address">住所</label>
-                <input type="hidden" name="address" id="address" value="<%= address %>">
-                <%= address %>
-            </div>
-            <div>
-                <label for="tel">電話</label>
-                <input type="hidden" name="tel" id="tel" value="<%= tel %>">
-                <%= tel %>
-            </div>
-            <div>
-                <input type="submit" value="戻る">
-                <input type="submit" value="登録">
-            </div>
-        </form>
-    <% } %>
-</body>
+  </body>
 </html>
