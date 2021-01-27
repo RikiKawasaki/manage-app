@@ -9,31 +9,13 @@ const manageControl = {
     res.redirect("/login");
   },
 
-  loginGet: (req, res, next) => {
+  login: (req, res, next) => {
     res.render("login", { title: "ログイン" });
   },
 
-  // loginPost: (req, res, next) => {
-  //   res.send("ok");
-  // },
-
-  loginPost: (req, res, next) => {
-    const email = req.body.email;
-    const password = req.body.password;
-    User.findOne({
-      where: {
-        email: email,
-      },
-    })
-      .then((user) => {
-        if (user && bcrypt.compareSync(password, user.password)) {
-          res.redirect("/home");
-        }
-        throw new Error();
-      })
-      .catch(() => {
-        res.redirect("/login");
-      });
+  logout: (req, res) => {
+    req.logout();
+    res.redirect("/login");
   },
 
   search: (req, res, next) => {
@@ -65,6 +47,7 @@ const manageControl = {
     })
       .then((users) => {
         res.render("searchResult", { title: "検索結果", users });
+        throw new Error();
       })
       .catch(() => {
         res.send("Not Found");
