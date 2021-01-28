@@ -6,8 +6,10 @@ const logger = require("morgan");
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const session = require("express-session");
+const bcrypt = require("bcrypt");
 
 const indexRouter = require("./routes/router");
+const User = require("./models").User;
 
 const app = express();
 
@@ -16,23 +18,50 @@ app.use(
 );
 app.use(passport.initialize());
 app.use(passport.session());
+// passport.use(
+//   new LocalStrategy(
+//     {
+//       usernameField: "username",
+//       passwordField: "password",
+//       passReqToCallback: true,
+//       session: false,
+//     },
+//     (req, username, password, done) => {
+//       process.nextTick(() => {
+//         if (username === "test" && password === "test") {
+//           return done(null, username);
+//         } else {
+//           console.log("login error");
+//           return done(null, false, { message: "not found" });
+//         }
+//       });
+//     }
+//   )
+// );
+
 passport.use(
   new LocalStrategy(
     {
-      usernameField: "username",
+      usernameField: "email",
       passwordField: "password",
       passReqToCallback: true,
       session: false,
     },
-    (req, username, password, done) => {
-      process.nextTick(() => {
-        if (username === "test" && password === "test") {
-          return done(null, username);
-        } else {
-          console.log("login error");
-          return done(null, false, { message: "not found" });
-        }
-      });
+    (req, email, password, done) => {
+      User.findOne({
+        where: {
+          email: email,
+        },
+      })
+        .then((user) => {
+          if (user && bcrypt.compareSync(password, user.password)) {
+            return done(null, user);
+          }
+          throw new Error();
+        })
+        .catch((error) => {
+          return done(null, false);
+        });
     }
   )
 );
